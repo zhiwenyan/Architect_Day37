@@ -12,7 +12,7 @@ import com.darren.architect_day36.retrofit.UserInfo;
  * 个人信息
  */
 public class UserInfoActivity extends AppCompatActivity implements UserInfoContract.UserInfoView {
-    private TextView mUserInfoTv;
+    public TextView mUserInfoTv;
     private UserInfoContract.UserInfoPresenter mPresenter;
 
     @Override

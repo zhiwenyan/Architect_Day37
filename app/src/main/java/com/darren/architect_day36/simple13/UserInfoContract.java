@@ -3,6 +3,8 @@ package com.darren.architect_day36.simple13;
 import com.darren.architect_day36.retrofit.UserInfo;
 import com.darren.architect_day36.simple13.base.BaseView;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -17,7 +19,7 @@ public class UserInfoContract {
         // 3.成功了要显示数据
         void onLoading();
         void onError();
-        void onSucceed(UserInfo userInfo);
+        void onSucceed(List<UserInfo> userInfo);
     }
 
     // user presenter 层
@@ -27,6 +29,6 @@ public class UserInfoContract {
 
     //Model层定义接口,外部只需关心 Model 返回的数据,无需关心内部细节,如是否使用缓存
     interface UserInfoModel {
-        Observable<UserInfo> getUsers(String token);
+        Observable<List<UserInfo>> getUsers(String token);
     }
 }

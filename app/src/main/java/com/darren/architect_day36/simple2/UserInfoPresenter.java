@@ -1,17 +1,20 @@
 package com.darren.architect_day36.simple2;
 
+import android.util.Log;
+
 import com.darren.architect_day36.retrofit.BaseSubscriber;
 import com.darren.architect_day36.retrofit.UserInfo;
 
 /**
  * Created by hcDarren on 2018/1/1.
  */
-public class UserInfoPresenter implements UserInfoContract.UserInfoPresenter{
+public class UserInfoPresenter implements UserInfoContract.UserInfoPresenter {
     // 肯定会持有 V 和 M
     private UserInfoContract.UserInfoView mView;
     private UserInfoContract.UserInfoModel mModel;
 
-    public UserInfoPresenter(UserInfoContract.UserInfoView view){
+    public UserInfoPresenter(UserInfoContract.UserInfoView view) {
+        Log.i("view=", "UserInfoPresenter=" + view);
         this.mView = view;
         mModel = new UserInfoModel();
     }

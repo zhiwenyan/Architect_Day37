@@ -1,8 +1,9 @@
 package com.darren.architect_day36.retrofit;
 
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
+import java.util.List;
+
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -13,9 +14,19 @@ public interface ServiceApi {
     // 接口涉及到解耦，userLogin 方法是没有任何实现代码的
     // 如果有一天要换 GoogleHttp
 
-    @POST("loginuser")// 登录接口 GET(相对路径)
-    @FormUrlEncoded
-    Observable<Result<UserInfo>> queryUserInfo(
+    @POST("LoginServlet")
+// 登录接口 GET(相对路径)
+    Observable<BaseResult<UserInfo>> queryUserInfo(
             // @Query(后台需要解析的字段)
-            @Field("token") String token);
+            @Query("userName") String username);
+
+
+    // 接口涉及到解耦，userLogin 方法是没有任何实现代码的
+    // 如果有一天要换 GoogleHttp
+
+    @POST("LoginServlet")
+// 登录接口 GET(相对路径)
+    Observable<BaseResult<List<UserInfo>>> queryListUserInfo(
+            // @Query(后台需要解析的字段)
+            @Query("userName") String username);
 }

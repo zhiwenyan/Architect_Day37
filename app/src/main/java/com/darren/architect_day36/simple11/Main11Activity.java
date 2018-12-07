@@ -8,17 +8,16 @@ import com.darren.architect_day36.simple11.base.BaseMvpActivity;
 import com.darren.architect_day36.simple11.inject.InjectPresenter;
 
 public class Main11Activity extends BaseMvpActivity implements UserInfoContract.UserInfoView {
-    private TextView mTextView;
+     TextView mTextView;
     //多个Presenter怎么处理 dagger处理，自己写dagger处理 自己写个注入
     //一个View 里面肯定有多个Presenter情况，怎么处理，Dagger处理
     @InjectPresenter
     private UserInfoPresenter mPresenter;
 
 
-
     @Override
     protected void initView() {
-        mTextView = (TextView) findViewById(R.id.textView);
+        mTextView = ( TextView ) findViewById(R.id.textView);
 
     }
 

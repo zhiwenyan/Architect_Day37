@@ -27,7 +27,7 @@ public class RetrofitClient {
                 .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
                     @Override
                     public void log(String message) {
-                        Log.e("TAG",message);
+                        Log.e("TAG", message);
                     }
                 }).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
@@ -39,7 +39,7 @@ public class RetrofitClient {
         //        3.2 自己想办法，取巧也行走漏洞
         Retrofit retrofit = new Retrofit.Builder()
                 // 访问后台接口的主路径
-                .baseUrl("http://ppw.zmzxd.cn/index.php/api/v1/")
+                .baseUrl("http://192.168.10.92:8080/OkHttpServer/")
                 // 添加解析转换工厂,Gson 解析，Xml解析，等等
                 .addConverterFactory(GsonConverterFactory.create())
                 // 添加 OkHttpClient,不添加默认就是 光杆 OkHttpClient
@@ -56,21 +56,25 @@ public class RetrofitClient {
         return mServiceApi;
     }
 
-    public static <T> Observable.Transformer<Result<T>, T> transformer() {
-        return new Observable.Transformer<Result<T>, T>() {
+
+//    public <R> Observable<R> compose(Observable.Transformer<? super T, ? extends R> transformer) {
+//        return (( Observable.Transformer<T, R> ) transformer).call(this);
+//    }
+
+    public static <T> Observable.Transformer<BaseResult<T>, T> transformer() {
+        return new Observable.Transformer<BaseResult<T>, T>() {
             @Override
-            public Observable<T> call(Observable<Result<T>> resultObservable) {
-                // resultObservable -> Observable<Result<UserInfo>> userLogin
-                return resultObservable.flatMap(new Func1<Result<T>, Observable<T>>() {
+            public Observable<T> call(Observable<BaseResult<T>> resultObservable) {
+                return resultObservable.flatMap(new Func1<BaseResult<T>, Observable<T>>() {
                     @Override
-                    public Observable<T> call(Result<T> tResult) {
+                    public Observable<T> call(BaseResult<T> tResult) {
                         // 解析不同的情况返回
-                        if(tResult.isOk()){
+                        if (tResult.isOk()) {
                             // 返回成功
                             return createObservable(tResult.data);
-                        }else {
+                        } else {
                             // 返回失败
-                            return Observable.error(new ErrorHandle.ServiceError("",tResult.getMsg()));
+                            return Observable.error(new ErrorHandle.ServiceError("", tResult.getMsg()));
                         }
                     }
                 }).subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

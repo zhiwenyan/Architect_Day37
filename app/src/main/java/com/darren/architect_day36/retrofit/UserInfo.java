@@ -5,14 +5,17 @@ package com.darren.architect_day36.retrofit;
  */
 
 public class UserInfo {
-    public String au_nickname;
-    public String au_sex;
+    public int id;
+    public String userName;
+    public String userSex;
 
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "userName='" + au_nickname + '\'' +
-                ", userPwd='" + au_sex + '\'' +
-                '}';
+    public UserInfo() {
     }
+
+    public UserInfo(int id, String userName, String userSex) {
+        this.id = id;
+        this.userName = userName;
+        this.userSex = userSex;
+    }
+
 }

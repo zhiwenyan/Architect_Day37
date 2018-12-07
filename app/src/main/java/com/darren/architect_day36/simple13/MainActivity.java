@@ -45,11 +45,11 @@ public class MainActivity extends BaseMvpActivity implements UserInfoContract.Us
 
     @Override
     //@CheckLogin
-    public void onSucceed(UserInfo userInfo) {
+    public void onSucceed(List<UserInfo> userInfo) {
         // 成功 这个时候 Activity 有可能会被关闭掉，有可能会异常崩溃（一般不会）
         // 1. 可以判断界面还在不在(试一试)
         // 2. 采用解绑（通用）
-        mUserInfoTv.setText(userInfo.toString());
+        mUserInfoTv.setText(userInfo.get(0).userName);
     }
 
 //    @Override
@@ -59,12 +59,12 @@ public class MainActivity extends BaseMvpActivity implements UserInfoContract.Us
 
     @Override
     protected void initData() {
-        mPresenter2.getUsers("ed6b0f13f34dd8cf13b003e4069145131135");
+        mPresenter2.getUsers("Steven");
     }
 
     @Override
     protected void initView() {
-        mUserInfoTv = (TextView) findViewById(R.id.user_info_tv);
+        mUserInfoTv = ( TextView ) findViewById(R.id.user_info_tv);
     }
 
     @Override

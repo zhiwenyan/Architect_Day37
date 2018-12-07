@@ -29,7 +29,7 @@ public class BasePresenter<V extends BaseView, M extends BaseModel> {
     public void attach(V view) {
         this.mView = view;
         //用代理对象
-        mProxyView = (V) Proxy.newProxyInstance(getClass().getClassLoader(), view.getClass().getInterfaces(), new InvocationHandler() {
+        mProxyView = ( V ) Proxy.newProxyInstance(getClass().getClassLoader(), view.getClass().getInterfaces(), new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 //动态代理对象会每次调用这个方法
@@ -41,10 +41,10 @@ public class BasePresenter<V extends BaseView, M extends BaseModel> {
         });
         //一个Presenter对应一个Model的情况
         //动态创建Model，怎么创建？通过Class反射机制去创建（Activity是怎么创建的？布局的View怎么创建的？反射）
-        Type[] params = ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments();
+        Type[] params = (( ParameterizedType ) this.getClass().getGenericSuperclass()).getActualTypeArguments();
         try {
             //最好是判断下类型
-            mModel = (M) ((Class) params[1]).newInstance();
+            mModel = ( M ) (( Class ) params[1]).newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

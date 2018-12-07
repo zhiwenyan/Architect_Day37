@@ -10,7 +10,7 @@ import com.darren.architect_day36.simple11.base.BasePresenter;
  *
  * @author: yanzhiwen
  */
-public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoView,UserInfoModel> implements UserInfoContract.UserInfoPresenter {
+public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoView, UserInfoModel> implements UserInfoContract.UserInfoPresenter {
     //是直接new还是？一个Presenter对应多个Model怎么解决？new 很正常，尽量分离（六大基本原则）
     //一般情况下是一个Presenter对应一个Model，如果说有多一对多的情况
     //写一个 一对一的情况
@@ -35,5 +35,6 @@ public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoVi
                 getView().onSucceed(userInfo);
             }
         });
+
     }
 }

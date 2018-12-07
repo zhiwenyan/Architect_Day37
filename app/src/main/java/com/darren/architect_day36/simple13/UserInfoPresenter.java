@@ -4,6 +4,8 @@ import com.darren.architect_day36.retrofit.BaseSubscriber;
 import com.darren.architect_day36.retrofit.UserInfo;
 import com.darren.architect_day36.simple13.base.BasePresenter;
 
+import java.util.List;
+
 
 /**
  * Created by hcDarren on 2018/1/1.
@@ -25,7 +27,7 @@ public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoVi
         // 显示正在加载中
         getView().onLoading();
         // 耗时 3s
-        getModel().getUsers(token).subscribe(new BaseSubscriber<UserInfo>() {
+        getModel().getUsers(token).subscribe(new BaseSubscriber<List<UserInfo>>() {
             @Override
             protected void onError(String errorCode, String errorMessage) {
                 // 失败
@@ -35,7 +37,8 @@ public class UserInfoPresenter extends BasePresenter<UserInfoContract.UserInfoVi
             }
 
             @Override
-            public void onNext(UserInfo userInfo) {
+            public void onNext(List<UserInfo> userInfo) {
+                System.out.println("========="+userInfo);
                 // 成功
                 getView().onSucceed(userInfo);
             }

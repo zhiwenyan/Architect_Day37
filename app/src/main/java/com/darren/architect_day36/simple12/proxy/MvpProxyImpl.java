@@ -1,8 +1,8 @@
 package com.darren.architect_day36.simple12.proxy;
 
-import com.darren.architect_day36.simple12.inject.InjectPresenter;
 import com.darren.architect_day36.simple12.base.BasePresenter;
 import com.darren.architect_day36.simple12.base.BaseView;
+import com.darren.architect_day36.simple12.inject.InjectPresenter;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -43,7 +43,7 @@ public class MvpProxyImpl<V extends BaseView> implements IMvpProxy {
                 //获取这个类
                 //编译器在运行的时候会对我们的泛型进行擦除（泛型擦除一般是针对系统的，我们指定的泛型信息都是会保留的），
                 // 在写代码是同一类型，在编译成Class字节码后泛型会进行擦除
-                presenterClazz = (Class<? extends BasePresenter>) field.getType(); //泛型擦除
+                presenterClazz = ( Class<? extends BasePresenter> ) field.getType(); //泛型擦除
                 //} catch (Exception e) {
                 // 乱七八糟一些注入
                 //    throw new RuntimeException("不支持的类型");
@@ -79,8 +79,8 @@ public class MvpProxyImpl<V extends BaseView> implements IMvpProxy {
      */
     private void checkView(BasePresenter basePresenter) {
         //1、Presenter的View接口
-        Type[] types = ((ParameterizedType) (basePresenter.getClass().getGenericSuperclass())).getActualTypeArguments();
-        Class viewClass = (Class) types[0];
+        Type[] types = (( ParameterizedType ) (basePresenter.getClass().getGenericSuperclass())).getActualTypeArguments();
+        Class viewClass = ( Class ) types[0];
         //2、要拿到View层的所有接口
         Class[] viewClasses = mView.getClass().getInterfaces();
         //3、View层没有实现就抛异常
