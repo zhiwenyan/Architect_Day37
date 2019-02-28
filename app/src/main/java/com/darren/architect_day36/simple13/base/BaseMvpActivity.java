@@ -10,7 +10,7 @@ import com.darren.architect_day36.simple13.proxy.ActivityMvpProxyImpl;
 /**
  * Created by hcDarren on 2018/1/1.
  */
-public abstract class BaseMvpActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseMvpActivity extends AppCompatActivity implements BaseView  {
     //    private P mPresenter;
     private ActivityMvpProxy mMvpProxy;
 

@@ -5,4 +5,7 @@ package com.darren.architect_day36.simple13.base;
  */
 
 public interface BaseView {
+    void onLoading();
+    void onError();
+//    void onSucceed(T t);
 }

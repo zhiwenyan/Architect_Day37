@@ -14,11 +14,11 @@ import rx.Observable;
 public class UserInfoContract {
     // user View 层
     interface UserInfoView extends BaseView {
-        // 1.正在加载中
-        // 2.获取出错了
-        // 3.成功了要显示数据
-        void onLoading();
-        void onError();
+//        // 1.正在加载中
+//        // 2.获取出错了
+//        // 3.成功了要显示数据
+//        void onLoading();
+//        void onError();
         void onSucceed(List<UserInfo> userInfo);
     }
 

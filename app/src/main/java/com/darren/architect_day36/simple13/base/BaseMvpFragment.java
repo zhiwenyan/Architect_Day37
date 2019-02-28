@@ -17,7 +17,7 @@ import com.darren.architect_day36.simple13.proxy.FragmentMvpProxyImpl;
  *
  * @author yanzhiwen
  */
-public class BaseMvpFragment extends Fragment implements BaseView {
+public abstract class BaseMvpFragment extends Fragment implements BaseView {
     private FragmentMvpProxy mFragmentMvpProxy;
 
     @Override
